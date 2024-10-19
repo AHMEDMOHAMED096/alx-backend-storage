@@ -1,7 +1,10 @@
 -- Create a new table to store the ranking
-CREATE TABLE IF NOT EXISTS band_origins_ranked AS
-SELECT origin, SUM(nb_fans) AS total_fans
-FROM bands
+CREATE TABLE IF NOT EXISTS country_fan_ranking AS
+SELECT origin, SUM(fans) AS nb_fans
+FROM metal_bands
 GROUP BY
     origin
-ORDER BY total_fans DESC;
+ORDER BY nb_fans DESC;
+
+-- Select the results
+SELECT * FROM country_fan_ranking;
