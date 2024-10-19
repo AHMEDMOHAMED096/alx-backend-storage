@@ -1,5 +1,4 @@
 -- Decrease the quantity of an item after adding a new order
-DELIMITER / /
 
 CREATE TRIGGER decrement
 AFTER INSERT ON orders
@@ -8,6 +7,3 @@ BEGIN
     UPDATE items 
     SET quantity = quantity - NEW.order_quantity 
     WHERE item_id = NEW.item_id;
-END //
-
-DELIMITER;
