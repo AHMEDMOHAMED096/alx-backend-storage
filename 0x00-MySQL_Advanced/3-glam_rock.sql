@@ -10,3 +10,6 @@ FROM bands
 WHERE
     main_style = 'Glam rock'
 ORDER BY lifespan DESC;
+
+-- Select the results
+SELECT * FROM glam_rock_bands;
