@@ -9,3 +9,5 @@ BEGIN
     SET quantity = quantity - NEW.order_quantity
     WHERE item_id = NEW.item_id;
 END //
+
+DELIMITER;
