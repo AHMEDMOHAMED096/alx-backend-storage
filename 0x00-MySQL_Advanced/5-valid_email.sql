@@ -1,3 +1,4 @@
+-- Resets valid_email if the email changed
 DELIMITER / /
 
 CREATE TRIGGER reset_valid_email
