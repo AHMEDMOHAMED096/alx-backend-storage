@@ -1,14 +1,9 @@
 -- Create a new table to store the results
 CREATE TABLE IF NOT EXISTS glam_rock_bands AS
-SELECT
-    band_name,
-    CASE
-        WHEN split IS NULL THEN 2022 - formed
-        ELSE split - formed
-    END AS lifespan
-FROM bands
+SELECT band_name, COALESCE(split, 2022) - formed AS lifespan
+FROM metal_bands
 WHERE
-    main_style = 'Glam rock'
+    style LIKE '%Glam rock%'
 ORDER BY lifespan DESC;
 
 -- Select the results
