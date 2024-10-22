@@ -1,14 +1,7 @@
 #!/usr/bin/env python3
-"""Import required modules"""
-from pymongo.collection import Collection
-from typing import List
+"""Lists all documents in a MongoDB collection."""
 
 
-def list_all(mongo_collection: Collection) -> List[dict]:
+def list_all(mongo_collection):
     """Lists all documents in a MongoDB collection."""
-    documents = list(mongo_collection.find())
-
-    if not documents:
-        return []
-
-    return documents
+    return mongo_collection.find()
