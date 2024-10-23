@@ -15,5 +15,5 @@ class Cache:
     def store(self, data: any) -> str:
         """Method to store data with certain key"""
         key = str(uuid4())
-        self.redis.set(key, data)
+        self._redis.set(key, data)
         return key
