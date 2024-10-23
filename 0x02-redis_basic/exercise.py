@@ -36,26 +36,6 @@ def call_history(method: Callable) -> Callable:
     return wrapper
 
 
-def replay(method: Callable):
-    """Method to display the history of inputs and outputs for a method."""
-    redis_instance = redis.Redis()
-
-    method_name = method.__qualname__
-
-    input_key = method_name + ":inputs"
-    output_key = method_name + ":outputs"
-
-    inputs = redis_instance.lrange(input_key, 0, -1)
-    outputs = redis_instance.lrange(output_key, 0, -1)
-
-    print(f"{method_name} was called {len(inputs)} times:")
-
-    for i, (input_args, output) in enumerate(zip(inputs, outputs), 1):
-        print(
-            f"{method_name}(*{input_args.decode('utf-8')})
-            -> {output.decode('utf-8')}")
-
-
 class Cache:
     """Cache class"""
 
