@@ -2,6 +2,7 @@
 """Import required modules"""
 import redis
 from uuid import uuid4
+from typing import Union
 
 
 class Cache:
@@ -12,7 +13,7 @@ class Cache:
         self._redis = redis.Redis()
         self._redis.flushdb()
 
-    def store(self, data: any) -> str:
+    def store(self, data: Union[str, bytes, int, float]) -> str:
         """Method to store data with certain key"""
         key = str(uuid4())
         self._redis.set(key, data)
