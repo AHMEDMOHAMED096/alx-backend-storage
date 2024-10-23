@@ -8,10 +8,10 @@ from typing import Callable
 redis_instance = redis.Redis()
 
 
-def cache_page(func: Callable) -> Callable:
+def cache_page(method: Callable) -> Callable:
     """Decorator to cache the result of a function in Redis."""
 
-    @wraps(func)
+    @wraps(method)
     def wrapper(url: str) -> str:
         """Wrapper to cache page content and count URL access."""
         cache_key = f"cache:{url}"
@@ -22,7 +22,7 @@ def cache_page(func: Callable) -> Callable:
             return cached_page.decode("utf-8")
 
         redis_instance.incr(count_key)
-        page_content = func(url)
+        page_content = method(url)
         redis_instance.setex(cache_key, 10, page_content)
 
         return page_content
